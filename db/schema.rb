@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20140523071432) do
     t.datetime "file_updated_at"
   end
 
-  add_index "attachments", ["attachable_id"], name: "index_attachments_on_attachable_id"
+  add_index "attachments", ["attachable_id"], name: "index_attachments_on_attachable_id", using: :btree
 
   create_table "replies", force: true do |t|
     t.text     "content"
@@ -39,9 +39,9 @@ ActiveRecord::Schema.define(version: 20140523071432) do
     t.string   "content_type", default: "markdown"
   end
 
-  add_index "replies", ["message_id"], name: "index_replies_on_message_id"
-  add_index "replies", ["ticket_id"], name: "index_replies_on_ticket_id"
-  add_index "replies", ["user_id"], name: "index_replies_on_user_id"
+  add_index "replies", ["message_id"], name: "index_replies_on_message_id", using: :btree
+  add_index "replies", ["ticket_id"], name: "index_replies_on_ticket_id", using: :btree
+  add_index "replies", ["user_id"], name: "index_replies_on_user_id", using: :btree
 
   create_table "tickets", force: true do |t|
     t.string   "subject"
@@ -52,17 +52,17 @@ ActiveRecord::Schema.define(version: 20140523071432) do
     t.string   "message_id"
     t.integer  "user_id"
     t.string   "content_type", default: "html"
-    t.string   "to"
     t.integer  "status",       default: 0,      null: false
     t.integer  "priority",     default: 0,      null: false
+    t.string   "to"
   end
 
-  add_index "tickets", ["assignee_id"], name: "index_tickets_on_assignee_id"
-  add_index "tickets", ["message_id"], name: "index_tickets_on_message_id"
-  add_index "tickets", ["priority"], name: "index_tickets_on_priority"
-  add_index "tickets", ["status"], name: "index_tickets_on_status"
-  add_index "tickets", ["to"], name: "index_tickets_on_to"
-  add_index "tickets", ["user_id"], name: "index_tickets_on_user_id"
+  add_index "tickets", ["assignee_id"], name: "index_tickets_on_assignee_id", using: :btree
+  add_index "tickets", ["message_id"], name: "index_tickets_on_message_id", using: :btree
+  add_index "tickets", ["priority"], name: "index_tickets_on_priority", using: :btree
+  add_index "tickets", ["status"], name: "index_tickets_on_status", using: :btree
+  add_index "tickets", ["to"], name: "index_tickets_on_to", using: :btree
+  add_index "tickets", ["user_id"], name: "index_tickets_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.datetime "created_at"
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 20140523071432) do
     t.string   "incoming_address"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

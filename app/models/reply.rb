@@ -31,7 +31,6 @@ class Reply < ActiveRecord::Base
     self.content += "\n\n" + self.user.signature.to_s
 
     mail = yield(self)
-
     mail.deliver
 
     self.message_id = mail.message_id

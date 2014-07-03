@@ -15,12 +15,14 @@ gem 'jquery-rails'
 # Zurb form errors
 gem 'foundation_rails_helper'
 
+gem 'mysql2'
+gem 'pry'
+
 group :development do
   # To use debugger
   gem 'byebug'
 
-  gem 'sqlite3'
-
+  gem 'mysql2'
   # Deploy with Capistrano
   gem 'capistrano', '~> 3.0'
   gem 'capistrano-rvm', '~> 0.1.0'

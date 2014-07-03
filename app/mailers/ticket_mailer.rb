@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class TicketMailer < ActionMailer::Base
+  default from: "Drop and Go Auto <support@dropandgoauto.com>"
 
   def reply(reply)
     @reply = reply
