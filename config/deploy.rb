@@ -10,7 +10,7 @@ set :branch, "master"
 set :default_stage, "production"
 
 set :use_sudo, false
-set :keep_releases, 5
+set :keep_releases, 3
 
 set :deploy_to, "/home/deploy/brimir"
 set :application_path, "/home/deploy/brimir"
