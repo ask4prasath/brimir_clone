@@ -38,7 +38,8 @@ class TicketsController < ApplicationController
       .filter_by_assignee_id(params[:assignee_id])
       .page(params[:page])
       .ordered
-      .viewable_by(current_user)
+
+      #.viewable_by(current_user)
 
     if @tickets.count > 0
       @tickets.each do |ticket|
