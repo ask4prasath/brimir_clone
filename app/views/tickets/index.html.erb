@@ -26,7 +26,7 @@
 
               <td><a data-type="priority" data-id="<%= ticket.priority %>" href="#" class="priority-<%= ticket.priority %> fa fa-circle" title="<%= t(:priority) %> <%= ticket.priority %>"></a></td>
               <td style="white-space:nowrap">
-                <%= ticket.user.email %>
+                <%= ticket.sender_email %>
               </td>
               <td class="text-secondary table-nowrap">
                 <% if !ticket.subject.nil? %>

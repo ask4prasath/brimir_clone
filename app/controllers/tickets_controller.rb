@@ -122,20 +122,20 @@ class TicketsController < ApplicationController
 
   private
     def ticket_params
-      #if current_user.agent?
-      #  params.require(:ticket).permit(
-      #      :content,
-      #      :user_id,
-      #      :subject,
-      #      :status,
-      #      :assignee_id,
-      #      :priority,
-      #      :message_id)
-      #else
-      #  params.require(:ticket).permit(
-      #      :content,
-      #      :subject,
-      #      :priority)
-      #end
+      if current_user.agent?
+        params.require(:ticket).permit(
+            :content,
+            :user_id,
+            :subject,
+            :status,
+            :assignee_id,
+            :priority,
+            :message_id)
+      else
+        params.require(:ticket).permit(
+            :content,
+            :subject,
+            :priority)
+      end
     end
 end
