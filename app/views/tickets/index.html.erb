@@ -58,7 +58,7 @@
 
               <td><span class="priority-<%= ticket.priority %> fa fa-circle" title="<%= t(:priority) %> <%= ticket.priority %>"></span></td>
               <td style="white-space:nowrap">
-                <%= ticket.user.email %>
+                <%= ticket.sender_email %>
               </td>
               <td class="text-secondary table-nowrap">
                 <% if !ticket.subject.nil? %>
