@@ -17,14 +17,14 @@
 class TicketsController < ApplicationController
   before_filter :authenticate_user!, except: [:create]
 
-  load_resource :ticket, except: [:index, :create]
-  skip_authorization_check only: [:create, :index, :show, :update]
+  load_and_authorize_resource :ticket, except: [:index, :create]
+  skip_authorization_check only: [:create, :index, :show, :update, :new]
 
   def show
     @agents = User.agents
 
     @reply = @ticket.replies.new
-    @reply.to = @ticket.user.email
+    @reply.to = @ticket.sender_email
   end
 
   def index
