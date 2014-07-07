@@ -100,11 +100,11 @@ class TicketsController < ApplicationController
             subject:      params[:Subject]
                              })
 
-        @ticket.user = current_user
-        @ticket.to = current_user.incoming_address
+        #@ticket.user = current_user
+        #@ticket.to = current_user.incoming_address
 
         if @ticket.save!
-          TicketMailer.notify_agents(@ticket, @ticket).deliver
+          #TicketMailer.notify_agents(@ticket, @ticket).deliver
 
           redirect_to ticket_url(@ticket), notice: 'Ticket created succesfully'
         else
