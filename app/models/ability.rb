@@ -20,39 +20,39 @@ class Ability
   def initialize(user)
     user ||= User.new # guest user (not logged in)
 
-    if user.agent?
-
-      # subagent for only 1 incoming address
-      unless user.incoming_address.nil?
-
-        can :manage, Ticket, to: user.incoming_address
-        can :manage, Reply, ticket: { to: user.incoming_address }
-        can [:create], Reply, ticket: nil # preview reply
-
-        can :read, Attachment, attachable_type: 'Ticket', attachable: {
-            to: user.incoming_address
-        }
-
-        can :read, Attachment, attachable_type: 'Reply', attachable: {
-            ticket: { to: user.incoming_address }
-        }
-
-        can [:edit, :update], User, id: user.id
-      else
-        can :manage, :all
-      end
-
-    else
-
-      # customers can view their own tickets, its replies and attachments
-      can [:read, :create, :new], Ticket, user_id: user.id
-      can [:new, :create, :read], Reply, ticket: { user_id: user.id }
-      can [:create], Reply, ticket: nil # preview reply
-      can :read, Attachment, attachable_type: 'Ticket', attachable: { user_id: user.id }
-      can :read, Attachment, attachable_type: 'Reply', attachable: { ticket: { user_id: user.id } }
-
-      # customers can edit their own account
-      can [:edit, :update], User, id: user.id
-    end
+    #if user.agent?
+    #
+    #  # subagent for only 1 incoming address
+    #  unless user.incoming_address.nil?
+    #
+    #    can :manage, Ticket, to: user.incoming_address
+    #    can :manage, Reply, ticket: { to: user.incoming_address }
+    #    can [:create], Reply, ticket: nil # preview reply
+    #
+    #    can :read, Attachment, attachable_type: 'Ticket', attachable: {
+    #        to: user.incoming_address
+    #    }
+    #
+    #    can :read, Attachment, attachable_type: 'Reply', attachable: {
+    #        ticket: { to: user.incoming_address }
+    #    }
+    #
+    #    can [:edit, :update], User, id: user.id
+    #  else
+    #    can :manage, :all
+    #  end
+    #
+    #else
+    #
+    #  # customers can view their own tickets, its replies and attachments
+    #  can [:read, :create, :new], Ticket, user_id: user.id
+    #  can [:new, :create, :read], Reply, ticket: { user_id: user.id }
+    #  can [:create], Reply, ticket: nil # preview reply
+    #  can :read, Attachment, attachable_type: 'Ticket', attachable: { user_id: user.id }
+    #  can :read, Attachment, attachable_type: 'Reply', attachable: { ticket: { user_id: user.id } }
+    #
+    #  # customers can edit their own account
+    #  can [:edit, :update], User, id: user.id
+    #end
   end
 end
