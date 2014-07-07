@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140523071432) do
+ActiveRecord::Schema.define(version: 20140707152140) do
 
   create_table "attachments", force: true do |t|
     t.integer  "attachable_id"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20140523071432) do
     t.integer  "status",       default: 0,      null: false
     t.integer  "priority",     default: 0,      null: false
     t.string   "to"
+    t.string   "sender_email"
   end
 
   add_index "tickets", ["assignee_id"], name: "index_tickets_on_assignee_id", using: :btree

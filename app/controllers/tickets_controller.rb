@@ -94,7 +94,11 @@ class TicketsController < ApplicationController
   def create
     respond_to do |format|
       format.html do
-        @ticket = Ticket.new(ticket_params)
+        @ticket = Ticket.new({
+            sender_email: params[:From],
+            content:      params[:plain],
+            subject:      params[:Subject]
+                             })
 
         @ticket.user = current_user
         @ticket.to = current_user.incoming_address
@@ -117,20 +121,20 @@ class TicketsController < ApplicationController
 
   private
     def ticket_params
-      if current_user.agent?
-        params.require(:ticket).permit(
-            :content,
-            :user_id,
-            :subject,
-            :status,
-            :assignee_id,
-            :priority,
-            :message_id)
-      else
-        params.require(:ticket).permit(
-            :content,
-            :subject,
-            :priority)
-      end
+      #if current_user.agent?
+      #  params.require(:ticket).permit(
+      #      :content,
+      #      :user_id,
+      #      :subject,
+      #      :status,
+      #      :assignee_id,
+      #      :priority,
+      #      :message_id)
+      #else
+      #  params.require(:ticket).permit(
+      #      :content,
+      #      :subject,
+      #      :priority)
+      #end
     end
 end

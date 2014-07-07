@@ -29,10 +29,6 @@ group :development do
   # To use debugger
   gem 'byebug'
 
-  gem 'mysql2'
-  # Deploy with Capistrano
-
-
   # Debian Wheezy has no nodejs in the repo's :(
   gem 'therubyracer'
 
@@ -43,11 +39,8 @@ end
 group :test do
   # for travis-ci
   gem 'rake'
-
   # for coveralls
   gem 'coveralls', require: false
-
-  gem 'mysql2'
 end
 
 group :production do
