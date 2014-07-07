@@ -18,7 +18,7 @@ class TicketsController < ApplicationController
   before_filter :authenticate_user!, except: [:create]
 
   load_and_authorize_resource :ticket, except: [:index, :create]
-  skip_authorization_check only: [:create]
+  skip_authorization_check only: [:create, :index]
 
   def show
     @agents = User.agents
@@ -41,13 +41,13 @@ class TicketsController < ApplicationController
 
       #.viewable_by(current_user)
 
-    if @tickets.count > 0
-      @tickets.each do |ticket|
-        authorize! :index, ticket
-      end
-    else
-      authorize! :index, Ticket
-    end
+    #if @tickets.count > 0
+    #  @tickets.each do |ticket|
+    #    authorize! :index, ticket
+    #  end
+    #else
+    #  authorize! :index, Ticket
+    #end
   end
 
   def update
