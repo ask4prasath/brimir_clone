@@ -17,10 +17,11 @@
 class TicketsController < ApplicationController
   before_filter :authenticate_user!, except: [:create]
 
-  load_and_authorize_resource :ticket, except: [:index, :create]
+  #load_and_authorize_resource :ticket, except: [:index, :create]
   skip_authorization_check only: [:create, :index, :show, :update, :new]
 
   def show
+    @ticket = Ticket.find(params[:id])
     @agents = User.agents
 
     @reply = @ticket.replies.new
@@ -51,6 +52,7 @@ class TicketsController < ApplicationController
   end
 
   def update
+    @ticket = Ticket.find(params[:id])
     respond_to do |format|
       if @ticket.update_attributes(ticket_params)
 
