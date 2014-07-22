@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140707152140) do
+ActiveRecord::Schema.define(version: 20140722203632) do
 
   create_table "attachments", force: true do |t|
     t.integer  "attachable_id"
@@ -25,6 +25,12 @@ ActiveRecord::Schema.define(version: 20140707152140) do
   end
 
   add_index "attachments", ["attachable_id"], name: "index_attachments_on_attachable_id", using: :btree
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "replies", force: true do |t|
     t.text     "content"
@@ -56,6 +62,7 @@ ActiveRecord::Schema.define(version: 20140707152140) do
     t.integer  "priority",     default: 0,      null: false
     t.string   "to"
     t.string   "sender_email"
+    t.string   "category"
   end
 
   add_index "tickets", ["assignee_id"], name: "index_tickets_on_assignee_id", using: :btree
