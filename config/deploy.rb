@@ -14,8 +14,8 @@ set :keep_releases, 3
 
 set :deploy_to, "/home/deploy/brimir"
 set :application_path, "/home/deploy/brimir"
-set :rails_env, "development"
-set :stage, "development"
+set :rails_env, "production"
+set :stage, "production"
 
 role :app, "collabrite.com"
 role :db, "collabrite.com", :primary => true
