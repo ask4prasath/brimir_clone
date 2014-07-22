@@ -99,10 +99,11 @@ class TicketsController < ApplicationController
     respond_to do |format|
       format.html do
         @ticket = Ticket.new({
-            sender_email: params["headers"]["From"],
-            content:      params[:plain],
-            subject:      params["headers"]["Subject"]
-                             })
+            sender_email: params["headers"] ? params["headers"]["From"] : params[:ticket][:sender_email],
+            content:      params[:plain] || params[:ticket][:content],
+            category:     (params[:ticket][:category] if params[:ticket]),
+            subject:      params["headers"] ? params["headers"]["Subject"] : params[:ticket][:subject]
+        })
 
         #@ticket.user = current_user
         #@ticket.to = current_user.incoming_address
