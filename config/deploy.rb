@@ -22,7 +22,7 @@ role :db, "collabrite.com", :primary => true
 
 set :port, 22
 
-#after 'deploy:update', 'deploy:restart'
+after 'deploy', 'deploy:restart'
 #before 'deploy:migrate', 'deploy:bundle'
 
 
@@ -36,12 +36,19 @@ namespace :deploy do
   #      run "cd #{application_path}/current; rake db:create"
   #   end
   #end
-
+  
   task :db_create do
     on "deploy@collabrite.com" do
       execute "cd #{current_path}; bundle exec rake db:create"
     end
   end
+
+  task :restart do
+    on "deploy@collabrite.com" do
+      execute "touch /home/deploy/brimir/current/tmp/restart.txt"
+    end
+  end
+
 end
 
 #namespace :deploy do
