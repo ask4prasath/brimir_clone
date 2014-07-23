@@ -8,7 +8,9 @@
   <div class="tabs-content panel">
     <div class="content active full" id="edit">
 
+        <%= f.text_field :sender_email %>
         <%= f.text_field :subject %>
+        <%= f.collection_select :category, Category.all, :id, :name, prompt: true %>
 
         <%= f.text_area :content %>
         <p><%= t(:parsed_markdown).html_safe %></p>

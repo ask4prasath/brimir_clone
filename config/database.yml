@@ -14,7 +14,7 @@ development:
   database: brimir_development
   pool: 5
   username: root
-  password: bangal0re
+  password:
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -25,7 +25,7 @@ test:
   database: brimir_test
   pool: 5
   username: root
-  password: bangal0re
+  password:
 
 production:
   adapter: mysql2
